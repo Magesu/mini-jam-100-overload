@@ -19,7 +19,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
-
+# Debug box updating the game when values are changed
 func _on_RotateSpeedSpinBox_value_changed(value):
 	enemy.rotate_speed = value
 	enemy.update()

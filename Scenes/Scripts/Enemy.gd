@@ -11,6 +11,7 @@ export var bullet_speed = 100
 # Nodes
 onready var shoot_timer = $ShootTimer
 onready var rotator = $Rotator
+onready var turn_timer = $TurnTimer
 
 # Scenes
 var bullet_scene = preload("res://Scenes/Bullet.tscn")
@@ -33,6 +34,9 @@ func _ready():
 	# Starts the timer
 	shoot_timer.wait_time = shoot_timer_wait_time
 	shoot_timer.start()
+	
+	# Starts the turn timer
+	turn_timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,3 +76,7 @@ func update():
 	# Starts the timer
 	shoot_timer.wait_time = shoot_timer_wait_time
 	shoot_timer.start()
+
+
+func _on_TurnTimer_timeout():
+	rotate_speed = -rotate_speed
