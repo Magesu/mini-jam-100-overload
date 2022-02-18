@@ -18,7 +18,7 @@ __meta__ = {
 margin_left = 40.0
 margin_top = 40.0
 margin_right = 292.0
-margin_bottom = 204.0
+margin_bottom = 246.0
 
 [node name="RotateSpeed" type="PanelContainer" parent="VBoxContainer"]
 margin_right = 252.0
@@ -145,6 +145,40 @@ size_flags_horizontal = 9
 size_flags_vertical = 3
 min_value = 1.0
 max_value = 500.0
+value = 100.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BulletSpeed" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 168.0
+margin_right = 252.0
+margin_bottom = 206.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/BulletSpeed"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 245.0
+margin_bottom = 31.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/BulletSpeed/HBoxContainer"]
+margin_left = 71.0
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 19.0
+text = "Bullet speed: "
+align = 2
+
+[node name="BulletSpeedBox" type="SpinBox" parent="VBoxContainer/BulletSpeed/HBoxContainer"]
+margin_left = 164.0
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+min_value = -1000.0
+max_value = 1000.0
 value = 100.0
 rounded = true
 __meta__ = {

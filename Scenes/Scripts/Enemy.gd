@@ -6,6 +6,7 @@ export var rotate_speed = 100
 export var shoot_timer_wait_time = 0.2
 export var spawnpoint_count = 4
 export var radius = 100
+export var bullet_speed = 100
 
 # Nodes
 onready var shoot_timer = $ShootTimer
@@ -47,6 +48,7 @@ func _on_Shoot_Timer_timeout():
 		var bullet = bullet_scene.instance()
 		bullet.position = child.global_position
 		bullet.rotation = child.global_rotation
+		bullet.speed = bullet_speed
 		get_tree().get_root().add_child(bullet)
 
 func update():

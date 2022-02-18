@@ -35,3 +35,7 @@ func _on_SpawnpointNumberSpinBox_value_changed(value):
 func _on_RadiusSpinBox_value_changed(value):
 	enemy.radius = value
 	enemy.update()
+
+func _on_BulletSpeedSpinBox_value_changed(value):
+	enemy.bullet_speed = value
+	enemy.update()
