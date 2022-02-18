@@ -48,3 +48,25 @@ func _on_Shoot_Timer_timeout():
 		bullet.position = child.global_position
 		bullet.rotation = child.global_rotation
 		get_tree().get_root().add_child(bullet)
+
+func update():
+	# Deletes all existing spawnpoints
+	for child in rotator.get_children():
+		child.queue_free()
+	
+	# Gets the angle inbetween the spawnpoints
+	var step = (2 * PI) / spawnpoint_count
+	
+	# For every spawnpoint, create a new position node at the appropriate position and with the appropriate rotation
+	for i in range(spawnpoint_count):
+		var spawnpoint = Position2D.new()
+		
+		# Creates a vector with the distance of radius and rotates it by the step times i
+		var pos = Vector2(radius, 0).rotated(step * i)
+		spawnpoint.position = pos
+		spawnpoint.rotation = pos.angle()
+		rotator.add_child(spawnpoint)
+	
+	# Starts the timer
+	shoot_timer.wait_time = shoot_timer_wait_time
+	shoot_timer.start()

@@ -1,0 +1,152 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Scripts/Debug Menu.gd" type="Script" id=1]
+
+[node name="Debug Menu" type="MarginContainer"]
+margin_right = 284.0
+margin_bottom = 88.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_constants/margin_top = 40
+custom_constants/margin_left = 40
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 292.0
+margin_bottom = 204.0
+
+[node name="RotateSpeed" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 38.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/RotateSpeed"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 245.0
+margin_bottom = 31.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/RotateSpeed/HBoxContainer"]
+margin_left = 56.0
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 19.0
+text = "Rotation speed: "
+align = 2
+
+[node name="RotateSpeedSpinBox" type="SpinBox" parent="VBoxContainer/RotateSpeed/HBoxContainer"]
+margin_left = 164.0
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 1000.0
+value = 100.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimerWaitTime" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 252.0
+margin_bottom = 80.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TimerWaitTime"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 245.0
+margin_bottom = 31.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TimerWaitTime/HBoxContainer"]
+margin_top = 5.0
+margin_right = 158.0
+margin_bottom = 19.0
+text = "Time between shooting: "
+align = 2
+
+[node name="TimerWaitTimeSpinBox" type="SpinBox" parent="VBoxContainer/TimerWaitTime/HBoxContainer"]
+margin_left = 162.0
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 0.1
+step = 0.1
+value = 0.2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpawnpointNumber" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 84.0
+margin_right = 252.0
+margin_bottom = 122.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/SpawnpointNumber"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 245.0
+margin_bottom = 31.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/SpawnpointNumber/HBoxContainer"]
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 19.0
+text = "Number of spawnpoints: "
+align = 2
+
+[node name="SpawnpointNumberSpinBox" type="SpinBox" parent="VBoxContainer/SpawnpointNumber/HBoxContainer"]
+margin_left = 164.0
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+min_value = 1.0
+value = 4.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Radius" type="PanelContainer" parent="VBoxContainer"]
+margin_top = 126.0
+margin_right = 252.0
+margin_bottom = 164.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Radius"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 245.0
+margin_bottom = 31.0
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/Radius/HBoxContainer"]
+margin_left = 110.0
+margin_top = 5.0
+margin_right = 160.0
+margin_bottom = 19.0
+text = "Radius: "
+align = 2
+
+[node name="RadiusSpinBox" type="SpinBox" parent="VBoxContainer/Radius/HBoxContainer"]
+margin_left = 164.0
+margin_right = 238.0
+margin_bottom = 24.0
+size_flags_horizontal = 9
+size_flags_vertical = 3
+min_value = 1.0
+max_value = 500.0
+value = 100.0
+rounded = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
