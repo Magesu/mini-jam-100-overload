@@ -3,10 +3,14 @@ extends KinematicBody2D
 
 # Export variables
 export var speed = 400
+export var radius = 40
 
 # Variables
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
+
+# Scenes
+var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -27,6 +31,15 @@ func _process(delta):
 		direction += Vector2.DOWN
 	if Input.is_action_pressed("ui_up"):
 		direction += Vector2.UP
+	# Shoot
+	if Input.is_action_just_pressed("mouse_left_click"):
+		var bullet = bullet_scene.instance()
+		var rotation = position.angle_to_point(get_global_mouse_position()) + PI
+		bullet.position = position + Vector2.RIGHT.rotated(rotation) * radius
+		bullet.rotation = rotation
+		bullet.speed = 500
+		get_tree().get_root().add_child(bullet)
+		
 	
 	# Makes the player's velocity direction * speed
 	# Direction is normalized so the player doesn't move faster diagonally
