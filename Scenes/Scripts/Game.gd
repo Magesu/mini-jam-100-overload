@@ -6,7 +6,7 @@ extends Node
 # var b = "text"
 
 # Nodes
-onready var enemy = get_node("Enemy")
+onready var enemy = get_node("Enemy/EnemyController")
 onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 
 
