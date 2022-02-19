@@ -2,6 +2,7 @@ extends Node2D
 
 
 # Export variables
+export var shoot_angle_offset = 0
 export var shoot_angle = 360
 export var rotate_speed = 100
 export var shoot_timer_wait_time = 0.2
@@ -23,9 +24,9 @@ export(PackedScene) var bullet_scene = preload("res://Scenes/Bullet.tscn")
 # Nodes
 onready var enemy = get_parent()
 
-onready var shoot_timer = enemy.get_node("ShootTimer")
-onready var rotator = enemy.get_node("Rotator")
-onready var turn_timer = enemy.get_node("TurnTimer")
+onready var shoot_timer = get_node("ShootTimer")
+onready var rotator = get_node("Rotator")
+onready var turn_timer = get_node("TurnTimer")
 
 onready var game = get_parent().get_parent()
 onready var player = game.get_node("Player")
@@ -82,7 +83,7 @@ func update():
 			var spawnpoint = Position2D.new()
 			
 			# Creates a vector with the distance of radius and rotates it by the step times i
-			var pos = Vector2(radius, 0).rotated(step * (i - (spawnpoint_count / 2)))
+			var pos = Vector2(radius, 0).rotated(deg2rad(shoot_angle_offset) + (step * (i - (spawnpoint_count / 2))))
 			spawnpoint.position = pos
 			spawnpoint.rotation = pos.angle() + deg2rad(bullet_angle_offset)
 			
