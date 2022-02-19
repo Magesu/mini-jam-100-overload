@@ -24,18 +24,21 @@ margin_bottom = 403.0
 margin_right = 452.0
 margin_bottom = 66.0
 text = "Start"
+flat = true
 
 [node name="Highscores" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 70.0
 margin_right = 452.0
 margin_bottom = 136.0
 text = "Highscores"
+flat = true
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 140.0
 margin_right = 452.0
 margin_bottom = 206.0
 text = "Quit"
+flat = true
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Highscores" to="." method="_on_Highscores_pressed"]
