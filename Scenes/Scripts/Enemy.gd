@@ -6,6 +6,8 @@ export var rotate_speed = 100
 export var shoot_timer_wait_time = 0.2
 export var spawnpoint_count = 4
 export var radius = 100
+export var turns = false
+export var turn_timer_wait_time = 1
 export var bullet_speed = 100
 
 # Nodes
@@ -18,26 +20,7 @@ var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Gets the angle inbetween the spawnpoints
-	var step = (2 * PI) / spawnpoint_count
-	
-	# For every spawnpoint, create a new position node at the appropriate position and with the appropriate rotation
-	for i in range(spawnpoint_count):
-		var spawnpoint = Position2D.new()
-		
-		# Creates a vector with the distance of radius and rotates it by the step times i
-		var pos = Vector2(radius, 0).rotated(step * i)
-		spawnpoint.position = pos
-		spawnpoint.rotation = pos.angle()
-		rotator.add_child(spawnpoint)
-	
-	# Starts the timer
-	shoot_timer.wait_time = shoot_timer_wait_time
-	shoot_timer.start()
-	
-	# Starts the turn timer
-	turn_timer.start()
-
+	update()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -76,6 +59,13 @@ func update():
 	# Starts the timer
 	shoot_timer.wait_time = shoot_timer_wait_time
 	shoot_timer.start()
+	
+	# Starts the turn timer
+	if turns:
+		turn_timer.wait_time = turn_timer_wait_time
+		turn_timer.start()
+	else:
+		turn_timer.stop()
 
 
 func _on_TurnTimer_timeout():

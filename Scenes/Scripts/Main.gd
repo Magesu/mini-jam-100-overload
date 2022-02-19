@@ -39,3 +39,11 @@ func _on_RadiusSpinBox_value_changed(value):
 func _on_BulletSpeedSpinBox_value_changed(value):
 	enemy.bullet_speed = value
 	enemy.update()
+
+func _on_TurnsCheckButton_toggled(button_pressed):
+	enemy.turns = button_pressed
+	enemy.update()
+
+func _on_TurnTimerWaitTime_value_changed(value):
+	enemy.turn_timer_wait_time = value
+	enemy.update()
