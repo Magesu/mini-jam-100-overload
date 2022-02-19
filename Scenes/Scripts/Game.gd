@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 
 
 # Declare member variables here. Examples:
@@ -6,8 +6,8 @@ extends Node2D
 # var b = "text"
 
 # Nodes
-#onready var enemy = get_node("Enemy")
-#onready var debug_menu = get_node("CanvasLayer/Debug Menu")
+onready var enemy = get_node("Enemy/EnemyController")
+onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,8 +16,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().change_scene("res://Main.tscn")
 
 # Debug box updating the game when values are changed
 #func _on_RotateSpeedSpinBox_value_changed(value):
