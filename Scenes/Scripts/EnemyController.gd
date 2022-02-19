@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 
 # Export variables
@@ -8,6 +8,7 @@ export var shoot_timer_wait_time = 0.2
 export var spawnpoint_count = 4
 export var radius = 100
 export var bullet_speed = 100
+export(float, 0, 1, 0.1) var bullet_speed_variation = 0.0
 
 export var turns = false
 export var turn_timer_wait_time = 1
@@ -19,9 +20,11 @@ export var target_player = false
 export(PackedScene) var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
 # Nodes
-onready var shoot_timer = $ShootTimer
-onready var rotator = $Rotator
-onready var turn_timer = $TurnTimer
+onready var enemy = get_parent()
+
+onready var shoot_timer = enemy.get_node("ShootTimer")
+onready var rotator = enemy.get_node("Rotator")
+onready var turn_timer = enemy.get_node("TurnTimer")
 
 onready var main = get_tree().root.get_node("Main")
 onready var player = main.get_node("Player")
@@ -43,13 +46,21 @@ func _process(delta):
 	rotator.rotation_degrees = fmod(new_rotation, 360)
 
 
-func _on_Shoot_Timer_timeout():
+func _on_ShootTimer_timeout():
 	# Spawns a bullet in every spawnpoint
 	for child in rotator.get_children():
 		var bullet = bullet_scene.instance()
 		bullet.position = child.global_position
 		bullet.rotation = child.global_rotation
-		bullet.speed = bullet_speed
+		
+		# If variation is more than 0% varies the bullet speeds
+		if bullet_speed_variation == 0:
+			bullet.speed = bullet_speed
+		else:
+			var bottom = -((float(bullet_speed) * bullet_speed_variation) / 2)
+			var top = (float(bullet_speed) * bullet_speed_variation) / 2
+			bullet.speed = bullet_speed + int(rand_range(bottom, top))
+		
 		get_tree().get_root().add_child(bullet)
 
 func update():
