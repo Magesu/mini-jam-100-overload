@@ -13,11 +13,10 @@ position = Vector2( 808, 264 )
 
 [node name="Enemy" parent="." instance=ExtResource( 1 )]
 position = Vector2( 517, 262 )
-shoot_angle = 30
-shoot_timer_wait_time = 0.5
-spawnpoint_count = 3
-target_player = true
+shoot_timer_wait_time = 1.0
+spawnpoint_count = 6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Debug Menu" parent="CanvasLayer" instance=ExtResource( 3 )]
+visible = false

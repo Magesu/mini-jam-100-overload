@@ -15,6 +15,8 @@ export var turn_timer_wait_time = 1
 
 export var target_player = false
 
+# Export scenes
+export(PackedScene) var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
 # Nodes
 onready var shoot_timer = $ShootTimer
@@ -23,9 +25,6 @@ onready var turn_timer = $TurnTimer
 
 onready var main = get_tree().root.get_node("Main")
 onready var player = main.get_node("Player")
-
-# Scenes
-var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
