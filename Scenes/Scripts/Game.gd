@@ -16,8 +16,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel"):
+		Global.new_score("Your awesome name", $Score.score)
 		get_tree().change_scene("res://Main.tscn")
 
 # Debug box updating the game when values are changed
