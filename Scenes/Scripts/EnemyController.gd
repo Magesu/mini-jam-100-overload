@@ -26,8 +26,8 @@ onready var shoot_timer = enemy.get_node("ShootTimer")
 onready var rotator = enemy.get_node("Rotator")
 onready var turn_timer = enemy.get_node("TurnTimer")
 
-onready var main = get_tree().root.get_node("Main")
-onready var player = main.get_node("Player")
+onready var game = get_parent().get_parent()
+onready var player = game.get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -61,7 +61,8 @@ func _on_ShootTimer_timeout():
 			var top = (float(bullet_speed) * bullet_speed_variation) / 2
 			bullet.speed = bullet_speed + int(rand_range(bottom, top))
 		
-		get_tree().get_root().add_child(bullet)
+		# Looks for the "Game" node to add bullets as children
+		get_parent().get_parent().add_child(bullet)
 
 func update():
 	# Deletes all existing spawnpoints
