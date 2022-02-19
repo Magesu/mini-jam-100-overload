@@ -21,7 +21,7 @@ func _on_Start_pressed():
 
 
 func _on_Highscores_pressed():
-	print("TO DO") #TO DO
+	get_tree().change_scene("res://Scenes/Highscores.tscn")
 
 func _on_Quit_pressed():
 	get_tree().quit()
