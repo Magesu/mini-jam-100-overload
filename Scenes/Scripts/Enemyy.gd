@@ -1,25 +1,24 @@
 extends KinematicBody2D
 
-onready var main = get_tree().root.get_node("Main")
-onready var player = main.get_node("Player")
 
 export var rot_speed = 100
-export var timer_delay = 6
-export var spawnpoint_count = 3
+export var timer_delay = 5
+export var spawnpoint_count = 6
 export var radius = 100
 
 onready var shoot_timer = $Shoot_Timer
 onready var rotator = $Rotator
 
-var bullet_scene= preload("res://Scenes/Bullet.tscn")
+var bullet_scene= preload("res://Scenes/Bullett.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var step = (PI * 2) / spawnpoint_count
 	for i in range(spawnpoint_count):
 		var spawnpoint = Position2D.new()
-		var pos = Vector2(radius, 0).rotated((i-1)*(PI/9))
+		var pos = Vector2(radius, 0).rotated(i*step)
 		spawnpoint.position = pos
-		spawnpoint.rotation = ((i-1)*(PI/9))
+		spawnpoint.rotation = pos.angle()
 		rotator.add_child(spawnpoint)
 	
 	shoot_timer.wait_time = timer_delay
@@ -28,8 +27,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
-	rotator.rotation = position.angle_to_point(player.position)+PI
+	pass
 
 
 

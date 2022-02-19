@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cucumber_w.png-bb6880d508431cd696f33ba03b64f997.stex"
+path="res://.import/furry_bullet.png-70251485acb12b023ccaf818828ff282.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/cucumber_w.png"
-dest_files=[ "res://.import/cucumber_w.png-bb6880d508431cd696f33ba03b64f997.stex" ]
+source_file="res://sprites/bullets/furry_bullet.png"
+dest_files=[ "res://.import/furry_bullet.png-70251485acb12b023ccaf818828ff282.stex" ]
 
 [params]
 
