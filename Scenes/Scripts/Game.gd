@@ -7,7 +7,7 @@ extends Node
 
 # Nodes
 onready var enemy = get_node("Enemy/EnemyController")
-onready var debug_menu = get_node("CanvasLayer/Debug Menu")
+#onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 
 
 # Called when the node enters the scene tree for the first time.

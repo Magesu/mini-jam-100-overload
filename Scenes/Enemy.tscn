@@ -16,6 +16,7 @@ shape = SubResource( 1 )
 
 [node name="EnemyController" type="Node2D" parent="."]
 script = ExtResource( 2 )
+spawnpoint_count = 0
 
 [node name="Rotator" type="Position2D" parent="."]
 
