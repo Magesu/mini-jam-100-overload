@@ -9,6 +9,7 @@ export var spawnpoint_count = 4
 export var radius = 100
 export var bullet_speed = 100
 export(float, 0, 1, 0.1) var bullet_speed_variation = 0.0
+export var bullet_angle_offset = 0
 
 export var turns = false
 export var turn_timer_wait_time = 1
@@ -82,7 +83,8 @@ func update():
 			# Creates a vector with the distance of radius and rotates it by the step times i
 			var pos = Vector2(radius, 0).rotated(step * (i - (spawnpoint_count / 2)))
 			spawnpoint.position = pos
-			spawnpoint.rotation = pos.angle()
+			spawnpoint.rotation = pos.angle() + deg2rad(bullet_angle_offset)
+			
 			rotator.add_child(spawnpoint)
 	
 	# Starts the timer
