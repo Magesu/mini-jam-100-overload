@@ -10,6 +10,7 @@ onready var enemy_controller = get_node("EnemyController")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Sequence of moves
 	charge()
 	yield(get_tree().create_timer(6.0), "timeout")
 	stop()
@@ -23,6 +24,7 @@ func _ready():
 #func _process(delta):
 #	pass
 
+# Configuring the enemy controller to do the moves
 func charge():
 	enemy_controller.shoot_angle = 360
 	enemy_controller.rotate_speed = 300

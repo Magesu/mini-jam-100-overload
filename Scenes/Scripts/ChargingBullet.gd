@@ -29,6 +29,7 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_ChargingBullet_body_entered(body):
+	# Kills bullet when it touches the charger
 	if parent != null:
 		if body == parent:
 			queue_free()
