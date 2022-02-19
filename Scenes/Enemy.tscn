@@ -16,12 +16,6 @@ shape = SubResource( 1 )
 
 [node name="EnemyController" type="Node2D" parent="."]
 script = ExtResource( 2 )
-rotate_speed = 15
-shoot_timer_wait_time = 1.0
-spawnpoint_count = 18
-radius = 500
-bullet_speed = -100
-bullet_speed_variation = 0.5
 
 [node name="Rotator" type="Position2D" parent="."]
 

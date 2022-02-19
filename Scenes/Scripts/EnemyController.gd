@@ -53,6 +53,9 @@ func _on_ShootTimer_timeout():
 		bullet.position = child.global_position
 		bullet.rotation = child.global_rotation
 		
+		if bullet.is_in_group("charging"):
+			bullet.parent = enemy
+		
 		# If variation is more than 0% varies the bullet speeds
 		if bullet_speed_variation == 0:
 			bullet.speed = bullet_speed
@@ -68,18 +71,19 @@ func update():
 	for child in rotator.get_children():
 		child.queue_free()
 	
-	# Gets the angle inbetween the spawnpoints
-	var step = deg2rad(shoot_angle) / spawnpoint_count
-	
-	# For every spawnpoint, create a new position node at the appropriate position and with the appropriate rotation
-	for i in range(spawnpoint_count):
-		var spawnpoint = Position2D.new()
+	if spawnpoint_count != 0:
+		# Gets the angle inbetween the spawnpoints
+		var step = deg2rad(shoot_angle) / spawnpoint_count
 		
-		# Creates a vector with the distance of radius and rotates it by the step times i
-		var pos = Vector2(radius, 0).rotated(step * (i - (spawnpoint_count / 2)))
-		spawnpoint.position = pos
-		spawnpoint.rotation = pos.angle()
-		rotator.add_child(spawnpoint)
+		# For every spawnpoint, create a new position node at the appropriate position and with the appropriate rotation
+		for i in range(spawnpoint_count):
+			var spawnpoint = Position2D.new()
+			
+			# Creates a vector with the distance of radius and rotates it by the step times i
+			var pos = Vector2(radius, 0).rotated(step * (i - (spawnpoint_count / 2)))
+			spawnpoint.position = pos
+			spawnpoint.rotation = pos.angle()
+			rotator.add_child(spawnpoint)
 	
 	# Starts the timer
 	shoot_timer.wait_time = shoot_timer_wait_time
