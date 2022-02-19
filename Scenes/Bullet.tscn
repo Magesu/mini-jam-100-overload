@@ -6,8 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13, 13 )
 
-[node name="Bullet" type="Area2D"]
-collision_layer = 0
+[node name="Bullet" type="Area2D" groups=["enemy"]]
 collision_mask = 0
 script = ExtResource( 2 )
 

@@ -8,6 +8,8 @@ export var radius = 40
 # Variables
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
+
+# Nodes
 onready var animator = $AnimatedSprite #equivalent to "get_node("AnimatedSprite")
 
 # Scenes
@@ -55,3 +57,11 @@ func _process(delta):
 
 	# I like to move it, move it. I like to move it, move it. Ya like to (Move it!)
 	move_and_slide(velocity)
+
+
+func _on_Hitbox_area_entered(area):
+	# OUCH!
+	if area.is_in_group("enemy"):
+		animator.modulate = Color(1,0,0)
+		yield(get_tree().create_timer(0.2),"timeout")
+		animator.modulate = Color(1,1,1)
