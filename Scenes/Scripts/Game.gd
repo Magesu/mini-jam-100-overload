@@ -10,6 +10,7 @@ export var charge_speed = 1
 #onready var enemy = get_node("Enemy/EnemyController")
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 onready var charge_line = get_node("Charge")
+onready var overload_line = get_node("Overload")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +22,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
+	
+	# Changes the second point of Charge until it meets the second point of Overload
+	if charge_line.points[1].x < overload_line.points[1].x:
+		charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
+	
+	# If Esc is pressed, returns to the main menu
 	if Input.is_action_just_pressed("ui_cancel"):
 		Global.new_score("Your awesome name", $Score.score)
 		get_tree().change_scene("res://Main.tscn")

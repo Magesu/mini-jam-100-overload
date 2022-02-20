@@ -30,11 +30,9 @@ func _process(_delta):
 	if Input.is_action_pressed("ui_right"):
 		direction += Vector2.RIGHT
 		animator.flip_h = false
-		hitbox.position.x = 7
 	if Input.is_action_pressed("ui_left"):
 		direction += Vector2.LEFT
 		animator.flip_h = true
-		hitbox.position.x = -7
 	if Input.is_action_pressed("ui_down"):
 		direction += Vector2.DOWN
 	if Input.is_action_pressed("ui_up"):
