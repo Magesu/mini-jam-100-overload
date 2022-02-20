@@ -19,7 +19,7 @@ func _ready():
 	yield(get_tree().create_timer(9.0), "timeout")
 	explode()
 	yield(get_tree().create_timer(0.3), "timeout")
-	queue_free()
+	call_deferred("queue_free")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

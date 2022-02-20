@@ -12,6 +12,8 @@ onready var shooter2 = get_node("Shooter2")
 onready var barkwave_duration = get_node("BarkwaveDuration")
 onready var time_between_barkwaves = get_node("TimeBetweenBarkwaves")
 
+onready var game = get_tree().root.get_node("Game")
+
 # Scenes
 var new_chihuahua_scene = preload("res://Scenes/ExplodingChihuahua.tscn")
 
@@ -55,7 +57,7 @@ func stop():
 func die():
 	var new_chihuahua = new_chihuahua_scene.instance()
 	new_chihuahua.global_position = global_position
-	get_parent().add_child(new_chihuahua)
+	game.add_child(new_chihuahua)
 	queue_free()
 
 func _on_Lifespan_timeout():
