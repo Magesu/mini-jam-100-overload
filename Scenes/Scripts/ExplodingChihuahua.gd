@@ -47,7 +47,7 @@ func explode():
 	shooter.shoot_timer_wait_time = 0.1
 	shooter.spawnpoint_count = 16
 	shooter.radius = 40
-	shooter.bullet_speed = 200
+	shooter.bullet_speed = 300
 	shooter.bullet_speed_variation = 0
 	shooter.turns = false
 	shooter.target_player = false

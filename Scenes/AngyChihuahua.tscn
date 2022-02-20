@@ -16,18 +16,31 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="Shooter1" parent="." instance=ExtResource( 1 )]
-spawnpoint_count = 2
+[node name="Shooter" parent="." instance=ExtResource( 1 )]
+shoot_angle = 60
+rotate_speed = 0
+shoot_timer_wait_time = 0.5
+spawnpoint_count = 3
 radius = 40
-bullet_speed = 50
-bullet_angular_speed = 1
+bullet_speed = 200
+target_player = true
 
 [node name="Shooter2" parent="." instance=ExtResource( 1 )]
-shoot_timer_wait_time = 2.0
-spawnpoint_count = 0
-radius = 40
+shoot_timer_wait_time = 1.0
+spawnpoint_count = 12
+radius = 50
 
 [node name="Lifespan" type="Timer" parent="."]
 wait_time = 10.0
 
+[node name="BarkwaveDuration" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="TimeBetweenBarkwaves" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]
+[connection signal="timeout" from="BarkwaveDuration" to="." method="_on_BarkwaveDuration_timeout"]
+[connection signal="timeout" from="TimeBetweenBarkwaves" to="." method="_on_TimeBetweenBarkwaves_timeout"]
