@@ -17,6 +17,7 @@ var can_deviate = false
 # Nodes 
 onready var spin_increment = get_node("SpinIncrement")
 onready var deviation_delay = get_node("DeviationDelay")
+onready var lifespan = get_node("Lifespan")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,6 +35,8 @@ func _ready():
 		deviation_delay.start()
 	else:
 		can_deviate = true
+	
+	lifespan.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,10 +44,6 @@ func _process(delta):
 	# Makes the bullet move forward
 	velocity = direction * speed
 	position += velocity * delta
-
-func _on_VisibilityNotifier2D_screen_exited():
-	# Kills the bullet when it goes offscreen
-	queue_free()
 
 func _on_SpinIncrement_timeout():
 	# Checks if the deviation delay has passed
@@ -57,3 +56,6 @@ func _on_SpinIncrement_timeout():
 func _on_DeviationDelay_timeout():
 	# Deviation delay has passed
 	can_deviate = true
+
+func _on_Lifespan_timeout():
+	queue_free()

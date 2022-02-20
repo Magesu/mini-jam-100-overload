@@ -69,8 +69,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 # When receives the custom signal player_hit, pauses the game and starts a timer
 func _on_Player_player_hit():
 	var timer = $Timer
-	get_tree().paused = true
-	timer.start(2)
+#	get_tree().paused = true
+#	timer.start(2)
 
 # When the pause timer runs out, checks the current score and returns to the menu
 func _on_Timer_timeout():
