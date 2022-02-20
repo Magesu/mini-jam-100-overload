@@ -1,4 +1,15 @@
-extends Node2D
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Shooter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/FallingBullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Scripts/Fluffy.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 32 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
 
 
 # Export variables
@@ -27,18 +38,18 @@ export var matryoshka_bullet_lifespan = 1
 export var matryoshka_rand_lifespan = false
 
 # Export scenes
-export(PackedScene) var bullet_scene = preload("res://Scenes/Bullet.tscn")
-export(PackedScene) var matryoshka_bullet_scene = preload("res://Scenes/Bullet.tscn")
+export(PackedScene) var bullet_scene = preload(\"res://Scenes/Bullet.tscn\")
+export(PackedScene) var matryoshka_bullet_scene = preload(\"res://Scenes/Bullet.tscn\")
 
 # Nodes
 onready var enemy = get_parent()
 
-onready var shoot_timer = get_node("ShootTimer")
-onready var rotator = get_node("Rotator")
-onready var turn_timer = get_node("TurnTimer")
+onready var shoot_timer = get_node(\"ShootTimer\")
+onready var rotator = get_node(\"Rotator\")
+onready var turn_timer = get_node(\"TurnTimer\")
 
-onready var game = get_tree().root.get_node("Game")
-onready var player = game.get_node("Player")
+onready var game = get_tree().root.get_node(\"Game\")
+onready var player = game.get_node(\"Player\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -72,17 +83,17 @@ func _on_ShootTimer_timeout():
 		
 		# If enemy is doing a charged atk, gives the enemy as a parent so the bullet gets destroyed when it touches the parent
 		# Like if the bullet was being sucked by the enemy
-		if bullet.is_in_group("charging"):
+		if bullet.is_in_group(\"charging\"):
 			bullet.parent = enemy
 		
 		# If enemy is throwing a curved bullet
-		if bullet.is_in_group("spinning"):
+		if bullet.is_in_group(\"spinning\"):
 			bullet.angular_speed = bullet_angular_speed
 			bullet.max_angle_deviation = bullet_max_angle_deviation
 			bullet.spin_increment_wait_time = bullet_spin_increment
 			bullet.deviation_delay_wait_time = deviation_delay
 		
-		if bullet.is_in_group("matryoshka"):
+		if bullet.is_in_group(\"matryoshka\"):
 			bullet.bullet_scene = matryoshka_bullet_scene
 			bullet.lifespan_wait_time = matryoshka_bullet_lifespan
 			bullet.rand_lifespan = matryoshka_rand_lifespan
@@ -95,7 +106,7 @@ func _on_ShootTimer_timeout():
 			var top = (float(bullet_speed) * bullet_speed_variation) / 2
 			bullet.speed = bullet_speed + int(rand_range(bottom, top))
 		
-		# Looks for the "Game" node to add bullets as children
+		# Looks for the \"Game\" node to add bullets as children
 		game.add_child(bullet)
 
 func update():
@@ -139,3 +150,34 @@ func update():
 
 func _on_TurnTimer_timeout():
 	rotate_speed = -rotate_speed
+"
+
+[node name="Fluffy" type="KinematicBody2D"]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Shooter" parent="." instance=ExtResource( 1 )]
+rotate_speed = 45
+shoot_timer_wait_time = 0.4
+radius = 75
+bullet_speed = 75
+bullet_scene = ExtResource( 2 )
+
+[node name="Shooter2" parent="." instance=ExtResource( 1 )]
+script = SubResource( 2 )
+rotate_speed = 45
+shoot_timer_wait_time = 0.4
+spawnpoint_count = 8
+radius = 125
+bullet_speed = 75
+bullet_scene = ExtResource( 2 )
+
+[node name="Lifespan" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]

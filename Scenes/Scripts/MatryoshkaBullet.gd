@@ -2,15 +2,17 @@ extends Area2D
 
 
 # Export variables
+export var lifespan_wait_time = 1
 export var speed = 100
 export var shoot_angle = 360
 export var spawnpoint_count = 1
 export var radius = 1
 export var bullet_speed = 100
 export var target_player = false
+export var rand_lifespan = false
 
 # Nodes
-onready var main = get_tree().root.get_node("Main")
+onready var main = get_tree().root.get_node("Game")
 onready var player = main.get_node("Player")
 onready var lifespan = get_node("Lifespan")
 
@@ -27,6 +29,10 @@ func _ready():
 	direction = Vector2(cos(get_rotation()),sin(get_rotation()))
 	
 	# Matryoshka bullet is now officially born
+	if rand_lifespan:
+		lifespan.wait_time = 1 + (randi() % lifespan_wait_time)
+	else:
+		lifespan.wait_time = lifespan_wait_time
 	lifespan.start()
 
 
@@ -59,7 +65,9 @@ func _on_Lifespan_timeout():
 		
 		# Sets variables of the new bullets
 		bullet.global_position = global_position + pos
-		bullet.speed = bullet_speed
+		
+		if !bullet.is_in_group("static"):
+			bullet.speed = bullet_speed
 		
 		# Matryoshka bullet's children are now officially born
 		main.add_child(bullet)

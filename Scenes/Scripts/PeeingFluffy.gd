@@ -1,11 +1,13 @@
-extends Path2D
+extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
-export var speed = 100
+# var a = 2
+# var b = "text"
 
 # Nodes
-onready var dog = get_node("PathFollow2D")
+onready var shooter = get_node("Shooter")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +15,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if dog == null:
-		queue_free()
-	else:
-		dog.offset += speed * delta
+#func _process(delta):
+#	pass
