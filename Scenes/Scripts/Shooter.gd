@@ -79,8 +79,6 @@ func _on_ShootTimer_timeout():
 			var top = (float(bullet_speed) * bullet_speed_variation) / 2
 			bullet.speed = bullet_speed + int(rand_range(bottom, top))
 		
-		bullet.angular_speed = bullet_angular_speed
-		
 		# Looks for the "Game" node to add bullets as children
 		get_parent().get_parent().add_child(bullet)
 
