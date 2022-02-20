@@ -15,10 +15,13 @@ onready var animator = $AnimatedSprite #equivalent to "get_node("AnimatedSprite"
 # Scenes
 var bullet_scene = preload("res://Scenes/Bullet.tscn")
 
+#Signals
+signal player_hit
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -60,8 +63,9 @@ func _process(_delta):
 
 
 func _on_Hitbox_area_entered(area):
-	# OUCH!
+	# OUCH! makes the player red and emits the signal (to the game)
 	if area.is_in_group("enemy"):
 		animator.modulate = Color(1,0,0)
-		yield(get_tree().create_timer(0.2),"timeout")
-		animator.modulate = Color(1,1,1)
+		emit_signal("player_hit")
+#		yield(get_tree().create_timer(0.2),"timeout")
+#		animator.modulate = Color(1,1,1)

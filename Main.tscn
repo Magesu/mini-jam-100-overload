@@ -1,10 +1,156 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Themes/Scribble_Theme.tres" type="Theme" id=2]
+[ext_resource path="res://Sprites/spritesheet_ears_idle.png" type="Texture" id=3]
+[ext_resource path="res://Path2D.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/spritesheet_dalmatian_idle.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/spritesheet_furry_idle.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/spritesheet_smol_idle.png" type="Texture" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( -54.0326, -52.9732, 54.0326, 52.9732, -56, 473, -73.103, -8.4757, 73.103, 8.4757, 151, 543, -221.749, 16.4814, 221.749, -16.4814, 472, 566, -100.387, 58.434, 100.387, -58.434, 798, 506, -2.99661, 61.4306, 2.99661, -61.4306, 909, 359, 52.4408, 86.9018, -52.4408, -86.9018, 869, 179, 92.8951, 2.99661, -92.8951, -2.99661, 688, 90, 89.8984, -14.9831, -89.8984, 14.9831, 510, 99, 157.49, -20.1587, -157.49, 20.1587, 232, 157, 66.7758, 23.9385, -66.7758, -23.9385, -30, 161, 32.7579, 42.8373, -32.7579, -42.8373, -145, 99, -84.4147, 40.3175, 84.4147, -40.3175, -166, -76, -60.4762, 17.6389, 60.4762, -17.6389, -48, -119, -41.4189, -3.18607, 41.4189, 3.18607, 76, -140, -15.9303, -35.0467, 15.9303, 35.0467, 151, -100, -7.13524, -76.1092, 7.13524, 76.1092, 178, 57, -4.75683, -57.0819, 4.75683, 57.0819, 199, 214, -17.8381, -53.5143, 17.8381, 53.5143, 218, 358, -33.2978, -20.2165, 33.2978, 20.2165, 286, 441, -40.433, -1.18921, 40.433, 1.18921, 422, 464, -53.5143, 45.1899, 53.5143, -45.1899, 586, 414, 0, 0, 0, 0, 659, 323, -29.7302, 73.7308, 29.7302, -73.7308, 710, 226, -18.8775, 72.6783, 18.8775, -72.6783, 745, 112, -57.5763, 48.1376, 57.5763, -48.1376, 855, -72, -23.5969, -9.43874, 23.5969, 9.43874, 993, -91, -51.9131, -54.7447, 51.9131, 54.7447, 1172, -45, -2.11893, -125.017, 2.11893, 125.017, 1256, 185, 20.1298, -27.546, -20.1298, 27.546, 1202, 355, 75.2219, -30.7244, -75.2219, 30.7244, 1094, 424, 101.022, -4.48985, -101.022, 4.48985, 841, 437, 19.0819, -6.73477, -19.0819, 6.73477, 729, 457, 63.9803, -21.3268, -63.9803, 21.3268, 511, 510, 23.5717, -13.4695, -23.5717, 13.4695, 347, 577, 0, 0, 0, 0, 171, 695, 109.349, -3.38885, -109.349, 3.38885, -9, 765, 58.4305, 36.4301, -58.4305, -36.4301, -185, 712, 5.00833, 44.9022, -5.00833, -44.9022, -267, 570, -34.2236, 36.4301, 34.2236, -36.4301, -248, 470, -47.5791, -44.9022, 47.5791, 44.9022, -56, 473 )
+}
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 300, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 600, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 200, 200, 200 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 400, 200, 200 )
+
+[sub_resource type="SpriteFrames" id=12]
+animations = [ {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 300, 200 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 200, 300, 200 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 400, 300, 200 )
+
+[sub_resource type="SpriteFrames" id=16]
+animations = [ {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 300, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 600, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( 179.519, 93.2298 )
+scale = Vector2( 0.672357, 0.662445 )
+curve = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -56, 473 )
+rotation = 2.92382
+rotate = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
+frames = SubResource( 5 )
+frame = 2
+playing = true
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -56, 473 )
+rotation = -1.03747
+rotate = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D2"]
+frames = SubResource( 12 )
+playing = true
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -56, 473 )
+rotation = 0.134377
+rotate = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D3"]
+frames = SubResource( 16 )
+playing = true
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
+position = Vector2( -56, 473 )
+rotation = -3.01859
+rotate = false
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D4"]
+frames = SubResource( 20 )
+frame = 1
+playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 1024.0
