@@ -13,9 +13,6 @@ var velocity = Vector2.ZERO
 onready var animator = $AnimatedSprite #equivalent to "get_node("AnimatedSprite")
 onready var hitbox = $Hitbox
 
-# Scenes
-var bullet_scene = preload("res://Scenes/Bullet.tscn")
-
 #Signals
 signal player_hit
 
@@ -42,15 +39,6 @@ func _process(_delta):
 		direction += Vector2.DOWN
 	if Input.is_action_pressed("ui_up"):
 		direction += Vector2.UP
-	# Shoot
-	if Input.is_action_just_pressed("mouse_left_click"):
-		var bullet = bullet_scene.instance()
-		var rotation = position.angle_to_point(get_global_mouse_position()) + PI
-		bullet.position = position + Vector2.RIGHT.rotated(rotation) * radius
-		bullet.rotation = rotation
-		bullet.speed = 500
-		get_tree().get_root().add_child(bullet)
-		
 	
 	# Makes the player's velocity direction * speed
 	# Direction is normalized so the player doesn't move faster diagonally

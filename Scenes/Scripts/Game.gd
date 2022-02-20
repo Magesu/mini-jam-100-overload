@@ -4,20 +4,24 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+export var charge_speed = 1
 
 # Nodes
 #onready var enemy = get_node("Enemy/EnemyController")
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
+onready var charge_line = get_node("Charge")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
+	$Charge/AnimationPlayer.play("inverted_rainbow")
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
 	if Input.is_action_just_pressed("ui_cancel"):
 		Global.new_score("Your awesome name", $Score.score)
 		get_tree().change_scene("res://Main.tscn")
@@ -54,6 +58,7 @@ func _process(_delta):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
+	$Charge/AnimationPlayer.play("inverted_rainbow")
 
 # When receives the custom signal player_hit, pauses the game and starts a timer
 func _on_Player_player_hit():
