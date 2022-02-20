@@ -11,6 +11,7 @@ var velocity = Vector2.ZERO
 
 # Nodes
 onready var animator = $AnimatedSprite #equivalent to "get_node("AnimatedSprite")
+onready var hitbox = $Hitbox
 
 #Signals
 signal player_hit

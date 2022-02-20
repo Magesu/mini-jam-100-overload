@@ -4,12 +4,13 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var charge_speed = 1
+export var charge_speed = 25
 
 # Nodes
 #onready var enemy = get_node("Enemy/EnemyController")
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 onready var charge_line = get_node("Charge")
+onready var overload_line = get_node("Overload")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +22,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
+	# Changes the position of the second point defining the Charge line
+	if charge_line.points[1].x < overload_line.points[1].x:
+		charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
+	
+	# Exits to main menu if Esc is pressed
 	if Input.is_action_just_pressed("ui_cancel"):
 		Global.new_score("Your awesome name", $Score.score)
 		get_tree().change_scene("res://Main.tscn")
