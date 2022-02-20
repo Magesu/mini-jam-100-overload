@@ -4,6 +4,7 @@ extends KinematicBody2D
 # Export variables
 export var speed = 400
 export var radius = 40
+export var imortal = true
 
 # Variables
 var direction = Vector2.ZERO
@@ -68,8 +69,9 @@ func _process(_delta):
 
 func _on_Hitbox_area_entered(area):
 	# OUCH! makes the player red and emits the signal (to the game)
-	if area.is_in_group("enemy"):
-		animator.modulate = Color(1,0,0)
-		emit_signal("player_hit")
-#		yield(get_tree().create_timer(0.2),"timeout")
-#		animator.modulate = Color(1,1,1)
+	if !imortal:
+		if area.is_in_group("enemy"):
+			animator.modulate = Color(1,0,0)
+			emit_signal("player_hit")
+	#		yield(get_tree().create_timer(0.2),"timeout")
+	#		animator.modulate = Color(1,1,1)

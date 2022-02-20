@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Dalmatian1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SpotTester.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scripts/Game.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Scripts/Score.gd" type="Script" id=5]
@@ -106,6 +107,8 @@ end_cap_mode = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Charge"]
 playback_speed = 0.5
 anims/inverted_rainbow = SubResource( 2 )
+
+[node name="Node2D" parent="." instance=ExtResource( 2 )]
 
 [connection signal="animation_finished" from="ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="player_hit" from="Player" to="." method="_on_Player_player_hit"]

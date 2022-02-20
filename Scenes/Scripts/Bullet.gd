@@ -8,6 +8,9 @@ export var speed = 100
 var direction = Vector2.ZERO
 var velocity = Vector2.ZERO
 
+var tester_scene = preload("res://Scenes/SpotTester.tscn")
+onready var game = get_tree().root.get_node("Game")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Gets the direction of the bullet with the power of MATH
@@ -16,6 +19,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_pressed("shift"):
+		var tester = tester_scene.instance()
+		tester.position = global_position
+		tester.rotation = global_rotation
+		game.add_child(tester)
 	# Makes the bullet move forward
 	velocity = direction * speed
 	position += velocity * delta
