@@ -14,4 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	chihuahua.offset += speed * delta
+	if chihuahua == null:
+		queue_free()
+	else:
+		chihuahua.offset += speed * delta
