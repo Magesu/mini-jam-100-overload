@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 # Declare member variables here. Examples:
-export var dalmatian_child_distance = 200
+export var dalmatian_child_distance = 100
 
 # Nodes
 onready var lifespan = get_node("Lifespan")
@@ -10,7 +10,7 @@ onready var lifespan = get_node("Lifespan")
 onready var game = get_tree().root.get_node("Game")
 
 # Scenes
-var dalmatian2_scene = preload("res://Scenes/Dalmatian2.tscn")
+var dalmatian2_scene = preload("res://Scenes/Dalmatian4.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
