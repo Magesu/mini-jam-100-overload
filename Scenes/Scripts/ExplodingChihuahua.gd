@@ -11,6 +11,8 @@ onready var shooter = get_node("Shooter")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Sequence of moves
+	stop()
+	yield(get_tree().create_timer(3.0), "timeout")
 	charge()
 	yield(get_tree().create_timer(6.0), "timeout")
 	stop()

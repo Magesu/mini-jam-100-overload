@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Shooter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/Scripts/AngyChihuahua1.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Scripts/AngyChihuahua.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -19,8 +19,15 @@ shape = SubResource( 1 )
 [node name="Shooter1" parent="." instance=ExtResource( 1 )]
 spawnpoint_count = 2
 radius = 40
+bullet_speed = 50
+bullet_angular_speed = 1
 
 [node name="Shooter2" parent="." instance=ExtResource( 1 )]
 shoot_timer_wait_time = 2.0
-spawnpoint_count = 12
+spawnpoint_count = 0
 radius = 40
+
+[node name="Lifespan" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]

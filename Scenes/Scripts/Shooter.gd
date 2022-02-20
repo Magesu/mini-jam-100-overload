@@ -11,6 +11,10 @@ export var radius = 100
 export var bullet_speed = 100
 export(float, 0, 1, 0.1) var bullet_speed_variation = 0.0
 export var bullet_angle_offset = 0
+export var bullet_angular_speed = 0
+export var bullet_max_angle_deviation = 0
+export var bullet_spin_increment = 0.1
+export var deviation_delay = 0.0
 
 export var turns = false
 export var turn_timer_wait_time = 1
@@ -55,8 +59,17 @@ func _on_ShootTimer_timeout():
 		bullet.position = child.global_position
 		bullet.rotation = child.global_rotation
 		
+		# If enemy is doing a charged atk, gives the enemy as a parent so the bullet gets destroyed when it touches the parent
+		# Like if the bullet was being sucked by the enemy
 		if bullet.is_in_group("charging"):
 			bullet.parent = enemy
+		
+		# If enemy is throwing a curved bullet
+		if bullet.is_in_group("spinning"):
+			bullet.angular_speed = bullet_angular_speed
+			bullet.max_angle_deviation = bullet_max_angle_deviation
+			bullet.spin_increment_wait_time = bullet_spin_increment
+			bullet.deviation_delay_wait_time = deviation_delay
 		
 		# If variation is more than 0% varies the bullet speeds
 		if bullet_speed_variation == 0:
@@ -65,6 +78,8 @@ func _on_ShootTimer_timeout():
 			var bottom = -((float(bullet_speed) * bullet_speed_variation) / 2)
 			var top = (float(bullet_speed) * bullet_speed_variation) / 2
 			bullet.speed = bullet_speed + int(rand_range(bottom, top))
+		
+		bullet.angular_speed = bullet_angular_speed
 		
 		# Looks for the "Game" node to add bullets as children
 		get_parent().get_parent().add_child(bullet)
