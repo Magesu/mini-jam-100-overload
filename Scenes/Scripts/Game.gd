@@ -4,7 +4,8 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-export var charge_speed = 1
+export var charge_speed = 50
+var charge_percentage = 0
 
 # Nodes
 #onready var enemy = get_node("Enemy/EnemyController")
@@ -26,6 +27,11 @@ func _process(delta):
 	# Changes the second point of Charge until it meets the second point of Overload
 	if charge_line.points[1].x < overload_line.points[1].x:
 		charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
+	
+	# Calculates the charge % based on the lenght of each line
+	var overload_limit = overload_line.points[1].x - overload_line.points[0].x
+	var current_charge = charge_line.points[1].x - charge_line.points[0].x
+	charge_percentage = current_charge/overload_limit
 	
 	# If Esc is pressed, returns to the main menu
 	if Input.is_action_just_pressed("ui_cancel"):

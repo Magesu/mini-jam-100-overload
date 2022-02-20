@@ -11,7 +11,9 @@ var velocity = Vector2.ZERO
 
 # Nodes
 onready var animator = $AnimatedSprite #equivalent to "get_node("AnimatedSprite")
+onready var charge_animator = $AnimatedSprite/AnimatedSprite2
 onready var hitbox = $Hitbox
+onready var game = get_parent()
 
 #Signals
 signal player_hit
@@ -52,6 +54,16 @@ func _process(_delta):
 
 	# I like to move it, move it. I like to move it, move it. Ya like to (Move it!)
 	move_and_slide(velocity)
+	
+
+	if game.charge_percentage > 0.5:
+#		charge_animator.modulate = Color(1, 1, 1, (-0.5+game.charge_percentage)*4)
+		charge_animator.speed_scale = clamp(1/(1-game.charge_percentage), 1, 10)
+		charge_animator.play("charge")
+	else:
+#		charge_animator.modulate = Color(0, 0, 0, 0)
+		charge_animator.speed_scale = 1
+		charge_animator.play("default")
 
 
 func _on_Hitbox_area_entered(area):
