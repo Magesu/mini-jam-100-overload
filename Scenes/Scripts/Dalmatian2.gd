@@ -26,10 +26,10 @@ func die():
 		var dalmation2 = dalmatian2_scene.instance()
 		
 		if i == 1:
-			dalmation2.global_position = global_position + Vector2(-dalmatian_child_distance, 0)
+			dalmation2.global_position = global_position + Vector2(0, -dalmatian_child_distance)
 			dalmation2.get_node("Shooter").rotate_speed = -dalmation2.get_node("Shooter").rotate_speed
 		else:
-			dalmation2.global_position = global_position + Vector2(dalmatian_child_distance, 0)
+			dalmation2.global_position = global_position + Vector2(0, dalmatian_child_distance)
 		game.add_child(dalmation2)
 		queue_free()
 
