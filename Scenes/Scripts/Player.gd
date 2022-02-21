@@ -46,9 +46,9 @@ func _process(delta):
 
 
 	# Checks if the player tried to discharge and if there is enough charge for it
-	if Input.is_action_just_pressed("ui_accept") and game.charge_percentage > 0.75:
+	if Input.is_action_just_pressed("ui_accept") and game.charge_percentage > 0.5:
 		game.reset_charge()
-		discharge_radius_max = clamp(200*(game.charge_percentage-0.75), 0, 50)
+		discharge_radius_max = 200*(game.charge_percentage-0.5)
 		discharge.disabled = false
 		discharging = true
 		# Plays the charge backwards
@@ -83,7 +83,7 @@ func _process(delta):
 	
 	# Animates the charging animation when passes a certain treshold
 	if not discharging:
-		if game.charge_percentage > 0.7:
+		if game.charge_percentage > 0.5:
 #			charge_animator.modulate = Color(1, 1, 1, (-0.5+game.charge_percentage)*4)
 			charge_animator.speed_scale = clamp(1/(1-game.charge_percentage), 1, 10)
 			charge_animator.play("charge")

@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 lifespan_wait_time = 10
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 modulate = Color( 0, 0.541176, 0.00784314, 1 )
 scale = Vector2( 2, 1 )
 texture = ExtResource( 2 )
