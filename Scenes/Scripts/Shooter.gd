@@ -39,6 +39,7 @@ onready var turn_timer = get_node("TurnTimer")
 
 onready var game = get_tree().root.get_node("Game")
 onready var player = game.get_node("Player")
+onready var nose = player.get_node("Hitbox")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,7 +50,7 @@ func _process(delta):
 	var new_rotation
 	if target_player:
 		# Targets player instead of rotating
-		new_rotation = rad2deg(player.global_position.angle_to_point(global_position))
+		new_rotation = rad2deg(nose.global_position.angle_to_point(global_position))
 	else:
 		# BANANAS ROTAT E
 		new_rotation = rotator.rotation_degrees + (rotate_speed * delta)
