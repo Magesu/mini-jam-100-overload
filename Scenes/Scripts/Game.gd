@@ -11,13 +11,21 @@ export var charge_speed = 1
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 onready var charge_line = get_node("Charge")
 onready var overload_line = get_node("Overload")
+onready var score = get_node("Score")
+onready var boss_spawn = get_node("BossSpawn")
+
+# Scenes
+var bosses = [preload("res://Scenes/AngyChihuahua.tscn"), preload("res://Scenes/Dalmatian1.tscn"), preload("res://Scenes/Fluffy.tscn"), preload("res://Scenes/LowCorgi.tscn")]
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
 	$Charge/AnimationPlayer.play("inverted_rainbow")
-	pass # Replace with function body.
+	
+	var boss = bosses[0].instance()
+	boss.global_position = boss_spawn.global_position
+	add_child(boss)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -61,6 +61,12 @@ position = Vector2( 512, 450 )
 [node name="AngyChihuahua" parent="." instance=ExtResource( 1 )]
 position = Vector2( 507, 169 )
 
+[node name="BossSpawn" type="Position2D" parent="."]
+position = Vector2( 512, 170 )
+__meta__ = {
+"_gizmo_extents_": 0.0
+}
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enable = true
 
