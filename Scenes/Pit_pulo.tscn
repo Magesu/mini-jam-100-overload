@@ -34,11 +34,6 @@ flags = 4
 atlas = ExtResource( 5 )
 region = Rect2( 0, 1600, 400, 400 )
 
-[sub_resource type="AtlasTexture" id=4]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 400, 400 )
-
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 2 )
@@ -69,6 +64,11 @@ flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 0, 2000, 400, 400 )
 
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 400, 400 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ SubResource( 6 ) ],
@@ -81,14 +81,14 @@ animations = [ {
 "name": "pulo",
 "speed": 9.0
 }, {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "shadow",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
 "loop": true,
 "name": "pouso",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "shadow",
 "speed": 5.0
 } ]
 
