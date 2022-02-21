@@ -29,7 +29,8 @@ func _ready():
 # Configuring the enemy controller to do the moves
 func charge():
 	shooter.shoot_angle = 360
-	shooter.rotate_speed = 300
+	shooter.rand_angle = true
+	shooter.rotate_speed = 0
 	shooter.shoot_timer_wait_time = 0.5
 	shooter.spawnpoint_count = 8
 	shooter.radius = 700
@@ -43,6 +44,7 @@ func charge():
 
 func explode():
 	shooter.shoot_angle = 360
+	shooter.rand_angle = false
 	shooter.rotate_speed = 100
 	shooter.shoot_timer_wait_time = 0.1
 	shooter.spawnpoint_count = 16
