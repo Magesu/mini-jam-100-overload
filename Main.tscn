@@ -121,7 +121,6 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
 frames = SubResource( 5 )
-frame = 2
 playing = true
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
@@ -131,6 +130,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D2"]
 frames = SubResource( 12 )
+frame = 1
 playing = true
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
@@ -140,6 +140,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D3"]
 frames = SubResource( 16 )
+frame = 1
 playing = true
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
@@ -149,7 +150,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D4"]
 frames = SubResource( 20 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -185,6 +186,20 @@ margin_right = 452.0
 margin_bottom = 206.0
 text = "Quit"
 flat = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 224.0
+margin_top = 16.0
+margin_right = 546.0
+margin_bottom = 30.0
+rect_scale = Vector2( 1.8, 1.8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "WARNING FOR FLASHING LIGHTS AND COLORS !"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Highscores" to="." method="_on_Highscores_pressed"]
