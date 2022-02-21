@@ -13,7 +13,7 @@ func _ready():
 	scores.append(Score.new("[Dev] Ceccro", 163))
 	scores.append(Score.new("[Subject] Xofis", 148))
 	scores.append(Score.new("[Subject] Mona Lisa", 128))
-	scores.append(Score.new("-", 0))
+	scores.append(Score.new("[Dev] Pedestrek", 128))
 	scores.append(Score.new("-", 0))
 	scores.append(Score.new("-", 0))
 	scores.append(Score.new("-", 0))
