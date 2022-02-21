@@ -28,7 +28,7 @@ func _ready():
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
 	$Charge/AnimationPlayer.play("inverted_rainbow")
 	
-	var boss = bosses[2].instance()
+	var boss = bosses[0].instance()
 	boss.global_position = boss_spawn.global_position
 	add_child(boss)
 	alive_bosses += 1

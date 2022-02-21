@@ -46,7 +46,7 @@ animations = [ {
 "speed": 40.0
 } ]
 
-[node name="Dalmatian4" type="KinematicBody2D"]
+[node name="Dalmatian4" type="KinematicBody2D" groups=["dalmatian"]]
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -82,7 +82,6 @@ wait_time = 10.0
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 5 )
-frame = 3
 playing = true
 
 [connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]
