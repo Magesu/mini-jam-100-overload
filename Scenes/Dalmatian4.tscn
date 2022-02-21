@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="Dalmatian4" type="KinematicBody2D"]
+[node name="Dalmatian4" type="KinematicBody2D" groups=["dalmatian"]]
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

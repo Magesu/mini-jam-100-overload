@@ -55,7 +55,6 @@ anims/rainbow_grad = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 512, 450 )
-imortal = true
 
 [node name="BossSpawn" type="Position2D" parent="."]
 position = Vector2( 512, 170 )
