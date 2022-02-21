@@ -74,3 +74,8 @@ func _on_Lifespan_timeout():
 	
 	# Matryoshka bullet is now officially dead
 	queue_free()
+
+
+func _on_MatryoshkaBullet_area_entered(area):
+	if area.is_in_group("player"):
+		queue_free()

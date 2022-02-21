@@ -27,5 +27,6 @@ rect = Rect2( -49, -25, 98, 49 )
 [node name="Lifespan" type="Timer" parent="."]
 wait_time = 5.0
 
+[connection signal="area_entered" from="." to="." method="_on_StaticBullet_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]

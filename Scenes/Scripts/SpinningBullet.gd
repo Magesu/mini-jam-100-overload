@@ -59,3 +59,7 @@ func _on_DeviationDelay_timeout():
 
 func _on_Lifespan_timeout():
 	queue_free()
+
+func _on_SpinningBullet_area_entered(area):
+	if area.is_in_group("player"):
+		queue_free()
