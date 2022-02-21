@@ -24,7 +24,7 @@ func _ready():
 #	pass
 
 func die():
-	game.spawn_new_boss()
+	game.boss_death()
 	queue_free()
 
 

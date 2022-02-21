@@ -6,8 +6,7 @@ extends Node
 # var b = "text"
 export var charge_speed = 50
 var charge_percentage = 0
-
-var dalmatian_deaths = 0
+var alive_bosses = 0
 
 # Nodes
 #onready var enemy = get_node("Enemy/EnemyController")
@@ -18,7 +17,7 @@ onready var score = get_node("Score")
 onready var boss_spawn = get_node("BossSpawn")
 
 # Scenes
-var bosses = [preload("res://Scenes/AngyChihuahua.tscn"), preload("res://Scenes/Dalmatian1.tscn"), preload("res://Scenes/Fluffy.tscn"), preload("res://Scenes/LowCorgi.tscn")]
+var bosses = [preload("res://Scenes/AngyChihuahua.tscn"), preload("res://Scenes/Dalmatian1.tscn"), preload("res://Scenes/Fluffy.tscn"), preload("res://Scenes/LowCorgi.tscn"), preload("res://Scenes/Pit_pulo.tscn")]
 onready var player = get_node("Player")
 
 # Signal
@@ -32,6 +31,7 @@ func _ready():
 	var boss = bosses[0].instance()
 	boss.global_position = boss_spawn.global_position
 	add_child(boss)
+	alive_bosses += 1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -90,16 +90,70 @@ func _on_AnimationPlayer_animation_finished(_anim_name):
 	$Charge/AnimationPlayer.play("inverted_rainbow")
 
 func spawn_new_boss():
-	var boss = bosses[randi() % bosses.size()].instance()
-	boss.global_position = boss_spawn.global_position
-	add_child(boss)
+	if alive_bosses == 0:
+		yield(get_tree().create_timer(3),"timeout")
+		
+		if score.score > 100:
+			var rand_num = randi() % 2
+			if rand_num == 1:
+				for i in 2:
+					var boss = bosses[randi() % bosses.size()].instance()
+					boss.global_position = boss_spawn.global_position + Vector2(400 * i, 0) + Vector2(-200, 0)
+					if boss.is_in_group("dalmatian"):
+						alive_bosses += 4
+					else:
+						alive_bosses += 1
+					add_child(boss)
+			else:
+				var boss = bosses[randi() % bosses.size()].instance()
+				boss.global_position = boss_spawn.global_position
+				add_child(boss)
+				if boss.is_in_group("dalmatian"):
+					alive_bosses += 4
+				else:
+					alive_bosses += 1
+		elif score.score > 200:
+			var rand_num = randi() % 3
+			if rand_num == 1:
+				for i in 3:
+					var boss = bosses[randi() % bosses.size()].instance()
+					boss.global_position = boss_spawn.global_position + Vector2(200 * i, 0) + Vector2(-200, 0)
+					if boss.is_in_group("dalmatian"):
+						alive_bosses += 4
+					else:
+						alive_bosses += 1
+					add_child(boss)
+			elif rand_num == 2:
+				for i in 2:
+					var boss = bosses[randi() % bosses.size()].instance()
+					boss.global_position = boss_spawn.global_position + Vector2(400 * i, 0) + Vector2(-200, 0)
+					if boss.is_in_group("dalmatian"):
+						alive_bosses += 4
+					else:
+						alive_bosses += 1
+					add_child(boss)
+			else:
+				var boss = bosses[randi() % bosses.size()].instance()
+				boss.global_position = boss_spawn.global_position
+				add_child(boss)
+				if boss.is_in_group("dalmatian"):
+					alive_bosses += 4
+				else:
+					alive_bosses += 1
+		else:
+			var boss = bosses[randi() % bosses.size()].instance()
+			boss.global_position = boss_spawn.global_position
+			if boss.is_in_group("dalmatian"):
+				alive_bosses += 4
+			else:
+				alive_bosses += 1
+			add_child(boss)
 
-func spawn_new_boss_dalmatian():
-	dalmatian_deaths += 1
+func boss_death():
+	alive_bosses -= 1
 	
-	if dalmatian_deaths == 4:
+	if alive_bosses == 0:
 		spawn_new_boss()
-		dalmatian_deaths = 0
 
 # When receives the custom signal player_hit, pauses the game and starts a timer
 func _on_Player_player_hit():

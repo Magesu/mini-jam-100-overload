@@ -67,5 +67,5 @@ func stop():
 	shooter.update()
 
 func die():
-	game.spawn_new_boss()
+	game.boss_death()
 	queue_free()
