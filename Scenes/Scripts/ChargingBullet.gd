@@ -33,3 +33,7 @@ func _on_ChargingBullet_body_entered(body):
 	if parent != null:
 		if body == parent:
 			queue_free()
+
+func _on_ChargingBullet_area_entered(area):
+	if area.is_in_group("player"):
+		queue_free()

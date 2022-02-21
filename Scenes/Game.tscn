@@ -40,7 +40,6 @@ tracks/0/keys = {
 
 [node name="Game" type="Node"]
 script = ExtResource( 4 )
-charge_speed = 25
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -96,7 +95,7 @@ pause_mode = 2
 modulate = Color( 1, 1, 1, 0.466667 )
 z_index = 1
 points = PoolVector2Array( 256, 550, 768, 550 )
-width = 15.0
+width = 20.0
 default_color = Color( 0.321569, 0.321569, 0.321569, 1 )
 joint_mode = 2
 begin_cap_mode = 2
@@ -113,6 +112,11 @@ end_cap_mode = 2
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Charge"]
 playback_speed = 0.5
 anims/inverted_rainbow = SubResource( 2 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600, 0, 16, -16, 16, -16, 616, 1040, 616, 1040, -16, 0, -16 )
 
 [connection signal="animation_finished" from="ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="player_hit" from="Player" to="." method="_on_Player_player_hit"]
