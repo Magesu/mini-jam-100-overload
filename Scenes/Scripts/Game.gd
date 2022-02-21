@@ -46,7 +46,8 @@ func _process(delta):
 	charge_percentage = current_charge/overload_limit
 	
 	if charge_percentage >= 1 and charge_percentage <= 2:
-		emit_signal("overload")
+		if !player.imortal:
+			emit_signal("overload")
 	
 	# If Esc is pressed, returns to the main menu
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -93,9 +94,18 @@ func spawn_new_boss():
 	if alive_bosses == 0:
 		yield(get_tree().create_timer(3),"timeout")
 		
-		if score.score > 100:
-			var rand_num = randi() % 2
+		if score.score > 200:
+			var rand_num = randi() % 3
 			if rand_num == 1:
+				for i in 3:
+					var boss = bosses[randi() % bosses.size()].instance()
+					boss.global_position = boss_spawn.global_position + Vector2(200 * i, 0) + Vector2(-200, 0)
+					if boss.is_in_group("dalmatian"):
+						alive_bosses += 4
+					else:
+						alive_bosses += 1
+					add_child(boss)
+			elif rand_num == 2:
 				for i in 2:
 					var boss = bosses[randi() % bosses.size()].instance()
 					boss.global_position = boss_spawn.global_position + Vector2(400 * i, 0) + Vector2(-200, 0)
@@ -112,18 +122,9 @@ func spawn_new_boss():
 					alive_bosses += 4
 				else:
 					alive_bosses += 1
-		elif score.score > 200:
-			var rand_num = randi() % 3
+		elif score.score > 100:
+			var rand_num = randi() % 2
 			if rand_num == 1:
-				for i in 3:
-					var boss = bosses[randi() % bosses.size()].instance()
-					boss.global_position = boss_spawn.global_position + Vector2(200 * i, 0) + Vector2(-200, 0)
-					if boss.is_in_group("dalmatian"):
-						alive_bosses += 4
-					else:
-						alive_bosses += 1
-					add_child(boss)
-			elif rand_num == 2:
 				for i in 2:
 					var boss = bosses[randi() % bosses.size()].instance()
 					boss.global_position = boss_spawn.global_position + Vector2(400 * i, 0) + Vector2(-200, 0)
