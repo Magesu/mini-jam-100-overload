@@ -22,9 +22,7 @@ func _ready():
 #	pass
 
 func die():
-	var next_boss = next_boss_scene.instance()
-	next_boss.global_position = global_position
-	game.add_child(next_boss)
+	game.spawn_new_boss_dalmatian()
 	queue_free()
 
 func _on_Lifespan_timeout():

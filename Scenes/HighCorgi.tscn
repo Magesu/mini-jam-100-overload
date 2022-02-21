@@ -180,5 +180,6 @@ bullet_max_angle_deviation = 90
 bullet_scene = ExtResource( 3 )
 
 [node name="Lifespan" type="Timer" parent="."]
+wait_time = 10.0
 
 [connection signal="timeout" from="Lifespan" to="." method="_on_Lifespan_timeout"]

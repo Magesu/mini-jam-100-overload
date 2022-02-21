@@ -21,6 +21,7 @@ func _ready():
 #	pass
 
 func die():
+	game.spawn_new_boss()
 	queue_free()
 
 func _on_Lifespan_timeout():

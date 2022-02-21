@@ -121,7 +121,6 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D"]
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Path2D"]
@@ -131,7 +130,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D2"]
 frames = SubResource( 12 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Path2D"]
@@ -141,7 +140,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D3"]
 frames = SubResource( 16 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Path2D"]
@@ -151,6 +150,7 @@ rotate = false
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Path2D/PathFollow2D4"]
 frames = SubResource( 20 )
+frame = 2
 playing = true
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

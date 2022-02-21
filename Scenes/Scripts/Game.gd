@@ -7,6 +7,8 @@ extends Node
 export var charge_speed = 50
 var charge_percentage = 0
 
+var dalmatian_deaths = 0
+
 # Nodes
 #onready var enemy = get_node("Enemy/EnemyController")
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
@@ -32,7 +34,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	# Changes the second point of Charge until it meets the second point of Overload
 	if charge_line.points[1].x < overload_line.points[1].x:
 		charge_line.points[1] = (charge_line.points[1]+Vector2(delta*charge_speed,0))
@@ -86,6 +87,18 @@ func reset_charge():
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
 	$Charge/AnimationPlayer.play("inverted_rainbow")
+
+func spawn_new_boss():
+	var boss = bosses[randi() % bosses.size()].instance()
+	boss.global_position = boss_spawn.global_position
+	add_child(boss)
+
+func spawn_new_boss_dalmatian():
+	dalmatian_deaths += 1
+	
+	if dalmatian_deaths == 4:
+		spawn_new_boss()
+		dalmatian_deaths = 0
 
 # When receives the custom signal player_hit, pauses the game and starts a timer
 func _on_Player_player_hit():
