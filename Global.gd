@@ -8,11 +8,11 @@ var scores=[]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	scores.append(Score.new("[Dev] Fenisu", 275))
 	scores.append(Score.new("[Dev] HappyPotatomato", 174))
-	scores.append(Score.new("[Dev] Ceccro", 136))
-	scores.append(Score.new("[Dev] Fenisu", 69))
-	scores.append(Score.new("-", 0))
-	scores.append(Score.new("-", 0))
+	scores.append(Score.new("[Dev] Ceccro", 163))
+	scores.append(Score.new("[Subject] Xofis", 148))
+	scores.append(Score.new("[Subject] Mona Lisa", 128))
 	scores.append(Score.new("-", 0))
 	scores.append(Score.new("-", 0))
 	scores.append(Score.new("-", 0))

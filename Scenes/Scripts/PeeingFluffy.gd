@@ -18,7 +18,6 @@ var next_boss_scene = preload("res://Scenes/LowCorgi.tscn")
 func _ready():
 	lifespan.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

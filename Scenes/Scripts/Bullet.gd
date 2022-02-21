@@ -12,7 +12,7 @@ var velocity = Vector2.ZERO
 func _ready():
 	# Gets the direction of the bullet with the power of MATH
 	direction = Vector2(cos(get_rotation()),sin(get_rotation()))
-	z_index = 1
+	z_index = 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

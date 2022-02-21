@@ -60,7 +60,7 @@ wait_time = 10.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
-frame = 1
+frame = 2
 playing = true
 
 [connection signal="timeout" from="Lifespan" to="." method="_on_Timer_timeout"]

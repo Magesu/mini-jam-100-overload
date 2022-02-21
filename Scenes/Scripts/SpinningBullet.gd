@@ -37,6 +37,7 @@ func _ready():
 		can_deviate = true
 	
 	lifespan.start()
+	z_index = 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

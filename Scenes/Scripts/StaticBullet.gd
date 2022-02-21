@@ -11,6 +11,7 @@ onready var lifespan = get_node("Lifespan")
 func _ready():
 	lifespan.wait_time = lifespan_wait_time
 	lifespan.start()
+	z_index = 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

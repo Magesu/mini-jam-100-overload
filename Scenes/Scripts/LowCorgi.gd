@@ -18,7 +18,6 @@ onready var shooter2 = get_node("Shooter2")
 func _ready():
 	lifespan.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

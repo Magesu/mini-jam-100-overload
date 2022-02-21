@@ -15,7 +15,6 @@ onready var lifespan = get_node("Lifespan")
 func _ready():
 	lifespan.start()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

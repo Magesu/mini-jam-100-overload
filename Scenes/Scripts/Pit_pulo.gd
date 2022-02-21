@@ -27,7 +27,6 @@ func _ready():
 	pulo_timer.start()
 	hitbox.disabled = true
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if estado == 1:

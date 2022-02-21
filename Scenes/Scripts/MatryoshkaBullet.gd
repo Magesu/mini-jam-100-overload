@@ -34,7 +34,7 @@ func _ready():
 	else:
 		lifespan.wait_time = lifespan_wait_time
 	lifespan.start()
-
+	z_index = 2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
