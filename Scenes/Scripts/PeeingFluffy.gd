@@ -30,3 +30,10 @@ func die():
 
 func _on_Timer_timeout():
 	die()
+
+
+func _on_AnimatedSprite_animation_finished():
+	if $AnimatedSprite.flip_h:
+		$AnimatedSprite.flip_h = false
+	else:
+		$AnimatedSprite.flip_h = true

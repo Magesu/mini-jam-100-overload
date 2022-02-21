@@ -1,9 +1,53 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=16 format=2]
 
+[ext_resource path="res://Sprites/spritesheet_charge.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scripts/Game.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/Scripts/Score.gd" type="Script" id=5]
 [ext_resource path="res://Themes/Scribble_Theme.tres" type="Theme" id=6]
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1800, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1500, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1200, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 900, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 600, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 300, 300, 300 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 300, 300 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=1]
 resource_name = "rainbow_grad"
@@ -40,6 +84,28 @@ tracks/0/keys = {
 [node name="Game" type="Node"]
 script = ExtResource( 4 )
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." groups=["must_survive"]]
+pause_mode = 2
+visible = false
+position = Vector2( 512, 300 )
+scale = Vector2( 3.41333, 2 )
+frames = SubResource( 10 )
+
+[node name="Label" type="Label" parent="." groups=["must_survive"]]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 6 )
+text = "OVERLOAD ! ! !"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="." groups=["must_survive"]]
+pause_mode = 2
+
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -62,9 +128,6 @@ __meta__ = {
 "_gizmo_extents_": 0.0
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enable = true
-
 [node name="Score" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -83,9 +146,6 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="Score"]
-
-[node name="Timer" type="Timer" parent="."]
-pause_mode = 2
 
 [node name="Overload" type="Line2D" parent="."]
 modulate = Color( 1, 1, 1, 0.466667 )
@@ -114,7 +174,9 @@ anims/inverted_rainbow = SubResource( 2 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 600, 0, 600, 0, 16, -16, 16, -16, 616, 1040, 616, 1040, -16, 0, -16 )
 
+[connection signal="overload" from="." to="." method="_on_Game_overload"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="animation_finished" from="ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="player_hit" from="Player" to="." method="_on_Player_player_hit"]
 [connection signal="timeout" from="Score/Timer" to="Score" method="_on_Timer_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="Charge/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
