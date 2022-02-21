@@ -21,6 +21,8 @@ onready var boss_spawn = get_node("BossSpawn")
 var bosses = [preload("res://Scenes/AngyChihuahua.tscn"), preload("res://Scenes/Dalmatian1.tscn"), preload("res://Scenes/Fluffy.tscn"), preload("res://Scenes/LowCorgi.tscn")]
 onready var player = get_node("Player")
 
+# Signal
+signal overload
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,8 +46,7 @@ func _process(delta):
 	charge_percentage = current_charge/overload_limit
 	
 	if charge_percentage >= 1 and charge_percentage <= 2:
-		player.player_die()
-		charge_line.points[1].x = 3000
+		emit_signal("overload")
 	
 	# If Esc is pressed, returns to the main menu
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -111,3 +112,14 @@ func _on_Timer_timeout():
 	get_tree().paused = false
 	Global.new_score("Your awesome name", $Score.score)
 	get_tree().change_scene("res://Main.tscn")
+
+func _on_Game_overload():
+	for child in get_children():
+		if not child.is_in_group("must_survive"):
+			child.visible = false
+	get_tree().paused = true
+	reset_charge()
+	$AnimatedSprite.play("default")
+	$AnimatedSprite.visible = true
+	$Label.visible = true
+	$Timer.start(2)

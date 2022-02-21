@@ -178,7 +178,7 @@ playing = true
 modulate = Color( 1, 1, 1, 0.588235 )
 frames = SubResource( 45 )
 animation = "charge"
-frame = 6
+frame = 5
 playing = true
 
 [node name="Hitbox" type="Area2D" parent="."]
