@@ -6,7 +6,11 @@ extends KinematicBody2D
 # var b = "text"
 
 # Nodes
+onready var game = get_tree().root.get_node("Game")
 onready var shooter = get_node("Shooter")
+
+# Scenes
+var next_boss_scene = preload("res://Scenes/Dalmatian1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +23,7 @@ func _ready():
 	yield(get_tree().create_timer(9.0), "timeout")
 	explode()
 	yield(get_tree().create_timer(0.3), "timeout")
-	call_deferred("queue_free")
+	die()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,3 +65,9 @@ func stop():
 	shooter.spawnpoint_count = 0
 	
 	shooter.update()
+
+func die():
+	var next_boss = next_boss_scene.instance()
+	next_boss.global_position = global_position
+	game.add_child(next_boss)
+	queue_free()

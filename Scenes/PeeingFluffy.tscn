@@ -29,3 +29,8 @@ matryoshka_bullet_lifespan = 10
 matryoshka_rand_lifespan = true
 bullet_scene = ExtResource( 1 )
 matryoshka_bullet_scene = ExtResource( 4 )
+
+[node name="Lifespan" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Lifespan" to="." method="_on_Timer_timeout"]

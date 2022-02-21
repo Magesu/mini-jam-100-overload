@@ -7,12 +7,9 @@ extends KinematicBody2D
 
 # Nodes
 onready var game = get_tree().root.get_node("Game")
-onready var shooter = get_node("Shooter")
 onready var lifespan = get_node("Lifespan")
 
 # Scenes
-var next_boss_scene = preload("res://Scenes/LowCorgi.tscn")
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,11 +21,7 @@ func _ready():
 #	pass
 
 func die():
-	var next_boss = next_boss_scene.instance()
-	next_boss.global_position = global_position
-	game.add_child(next_boss)
 	queue_free()
 
-
-func _on_Timer_timeout():
+func _on_Lifespan_timeout():
 	die()
