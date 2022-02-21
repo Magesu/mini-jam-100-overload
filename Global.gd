@@ -28,7 +28,7 @@ func _ready():
 func new_score(name_in, score_in):
 	for i in range(0, 10):
 		if scores[i].score_number < score_in:
-			scores[i] = Score.new(name_in, score_in)
+			scores.insert(i, Score.new(name_in, score_in))
 			break
 
 class Score:

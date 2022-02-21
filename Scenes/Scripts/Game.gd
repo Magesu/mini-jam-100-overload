@@ -12,6 +12,7 @@ var charge_percentage = 0
 #onready var debug_menu = get_node("CanvasLayer/Debug Menu")
 onready var charge_line = get_node("Charge")
 onready var overload_line = get_node("Overload")
+onready var player = get_node("Player")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,6 +33,10 @@ func _process(delta):
 	var overload_limit = overload_line.points[1].x - overload_line.points[0].x
 	var current_charge = charge_line.points[1].x - charge_line.points[0].x
 	charge_percentage = current_charge/overload_limit
+	
+	if charge_percentage >= 1 and charge_percentage <= 2:
+		player.player_die()
+		charge_line.points[1].x = 3000
 	
 	# If Esc is pressed, returns to the main menu
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -67,8 +72,10 @@ func _process(delta):
 #	enemy.turn_timer_wait_time = value
 #	enemy.update()
 
+func reset_charge():
+	charge_line.points[1].x = overload_line.points[0].x
 
-func _on_AnimationPlayer_animation_finished(anim_name):
+func _on_AnimationPlayer_animation_finished(_anim_name):
 	$ColorRect/AnimationPlayer.play("rainbow_grad")
 	$Charge/AnimationPlayer.play("inverted_rainbow")
 
